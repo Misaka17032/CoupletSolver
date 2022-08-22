@@ -39,6 +39,6 @@ def get_data(in_path="./data/couplet/train/in.txt", out_path="./data/couplet/tra
 
 if __name__ == '__main__':
 	model = bert_model()
-	train_dataloader = DataLoader(get_data(), shuffle=True, batch_size=64)
+	train_dataloader = DataLoader(get_data(), shuffle=True, batch_size=400)
 	train_loss = losses.CosineSimilarityLoss(model)
-	model.fit(train_objectives=[(train_dataloader, train_loss)], epochs=5, warmup_steps=100, output_path="./model/STModel.dat")
+	model.fit(train_objectives=[(train_dataloader, train_loss)], device="cuda:1", epochs=5, warmup_steps=100, output_path="./model/STModel.dat")
